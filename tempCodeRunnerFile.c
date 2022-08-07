@@ -35,19 +35,15 @@ int main() {
 			inputtedSong = readSongData();
 			begginingInsert(inputtedSong);
 			printf("\nMúsica inserida no início da playlist com sucesso!\n");
-			printf("---------DADOS-------\n");
     		printSong(inputtedSong);
-			pause();
 			
 			break;
 
 			case 2: //inserir no fim
 			inputtedSong = readSongData();
 			endInsert(inputtedSong);
-			printf("\nMúsica inserida no final da playlist com sucesso!\n\n");
-			printf("---------DADOS-------\n");
+			printf("\nMúsica inserida no final da playlist com sucesso!\n");
     		printSong(inputtedSong);
-			pause();
 
 			break;
 
@@ -56,18 +52,15 @@ int main() {
 				printf("Digite a posição que deseja inserir o elemento: ");
 				scanf("%d", &pos);
 				midInsert(inputtedSong, pos);
-				printf("\nMúsica inserida na posição %d!\n\n", pos);
-				printf("---------DADOS-------\n");
+				printf("\nMúsica inserida na posição %d!\n", pos);
     			printSong(inputtedSong);
-				pause();
-				getchar();
 			break;
 
 			case 4: ///remover da lista
 				printf("Digite ID da música que deseja remover: ");
 				scanf("%d", &ID);
 				removeSong(ID);
-				pause();
+
 			break;
 
 			case 5: //mostrar itens da lista
@@ -189,7 +182,7 @@ void removeSong(int ID){ //Remove elemento cujo ID seja igual ao que foi passado
 			if(cursorElement == Head){
 				Head = cursorElement -> next;
 				free(cursorElement);
-				printf("----- Música Removida -----\n");
+				printf("----- Song removed -----\n");
 				showPlaylist();
 				getchar();
 				return;
@@ -197,7 +190,7 @@ void removeSong(int ID){ //Remove elemento cujo ID seja igual ao que foi passado
 			else{
 				previousElement -> next = cursorElement -> next;
 				free(cursorElement);
-				printf("----- Musica Removida-----\n");
+				printf("----- Song removed -----\n");
 				showPlaylist();
 				getchar();
 				return;
@@ -234,7 +227,6 @@ void endInsert(Song mySong){ //Adiciona musica no fim
 	}
 		cursorElement->next = newElement;
 	}
-	
 }
 
 void showPlaylist() //Mostra a playlist toda
