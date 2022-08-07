@@ -1,27 +1,27 @@
-#include <stdlib.h>
+#include <stdlib.h> //Inclui bibliotecas
 #include <stdio.h>
 
-typedef struct Song{
+typedef struct Song{ //Cria e define meu tipo Song, usado para armazenar dados das musicas
 	char title[30];
 	char artist[30];
 	int duration;
 	int ID;
 } Song;
 
-struct listElement {
+struct listElement { //Cria minha estrutura de elemento da lista.
 	Song songElement;
 	struct listElement *next;
 } *Head;
 
-int menu();
-void begginingInsert(Song mySong);
-void endInsert(Song mySong);
-void midInsert(Song mySong, int pos);
-void removeSong(int ID); 
-void showPlaylist();
-Song readSongData();
-void printSong(Song songToPrint);
-void pause();
+int menu();    						//Função de Menu
+void begginingInsert(Song mySong);	//Adiciona no início
+void endInsert(Song mySong);		//Adiciona no fim
+void midInsert(Song mySong, int pos);//Adiciona no meio
+void removeSong(int ID); 			//Remove
+void showPlaylist();				//Mostra a playlist
+Song readSongData();				//Le uma musica
+void printSong(Song songToPrint);	//Imprime musica na tela
+void pause();						//Pausa
 
 int main() {
     int option, ID, pos;
@@ -112,7 +112,7 @@ Song readSongData()  //Chama o input para ler dados de uma Musica
     return mySong;
 }
 
-void printSong(Song songToPrint){
+void printSong(Song songToPrint){ //Imprime uma musica
     printf("Título:........ %s\n", songToPrint.title);
     printf("Artista:....... %s", songToPrint.artist);
 	printf("\nDuration:...... %d\n", songToPrint.duration);
@@ -120,7 +120,7 @@ void printSong(Song songToPrint){
     printf("____________________________________\n");
 }
 
-void begginingInsert(Song mySong){
+void begginingInsert(Song mySong){ //Insere no início
 	struct listElement *newElement;
 	//alocar o elemento na memoria
 	newElement = (struct listElement *)malloc(sizeof(struct listElement ));
@@ -138,7 +138,7 @@ void begginingInsert(Song mySong){
 	}
 };
 
-void midInsert(Song mySong, int pos){
+void midInsert(Song mySong, int pos){ //Insere no meio
 	pos = pos -1;
 	struct listElement *newElement;
 	//alocar o elemento na memoria
@@ -169,7 +169,7 @@ void midInsert(Song mySong, int pos){
 
 };
 
-void removeSong(int ID){
+void removeSong(int ID){ //Remove elemento cujo ID seja igual ao que foi passado
 	struct listElement *cursorElement;
 	cursorElement = (struct listElement *)malloc(sizeof(struct listElement));
 	struct listElement *previousElement;
@@ -203,15 +203,13 @@ void removeSong(int ID){
 	}
 }
 
-void endInsert(Song mySong){
+void endInsert(Song mySong){ //Adiciona musica no fim
 	struct listElement *newElement;
 	//alocar o elemento na memoria
 	newElement = (struct listElement *)malloc(sizeof(struct listElement ));
 	//Acessa o novo elemento e adiciona o valor de num dentro de NovoElemento.dado.
 	newElement->songElement = mySong;
 	newElement->next = NULL;
-
-
 
 	struct listElement *cursorElement;
 	cursorElement = (struct listElement *)malloc(sizeof(struct listElement));
@@ -231,7 +229,7 @@ void endInsert(Song mySong){
 	}
 }
 
-void showPlaylist()
+void showPlaylist() //Mostra a playlist toda
 {
 	printf("===== Minha playlist ====\n");
 	struct listElement *cursorElement;
@@ -251,7 +249,7 @@ void showPlaylist()
 	return;
 }
 
-void pause()
+void pause() //pausa
 {
     printf("Pressione ENTER para continuar: \n");
     getchar();
